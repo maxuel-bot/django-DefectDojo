@@ -1,0 +1,991 @@
+{% "penetration_test_report.html" %}
+</div>
+
+<div id="contents">
+    {% endif %}
+    {% if include_executive_summary %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 id="executive">Executive Summary</h3>
+            <p>
+                {{Engagement_Name}} sought to confirm the security of their digital infrastructure through a penetration
+                test. The
+                objective of this test was to determine if there any known weaknesses or security flaws present within
+                the systems,
+                applications and processes. This report focuses on the {{Project_Name}} networks and systems of
+                {{Engagement_Name}}.
+                Hedgehog Security conducted the penetration test between the {{Start_Date}} and {{End_Date}}. The test
+                was carried out
+                by {{Lead_First-Name_Last-Name}}.
+
+            </p>
+        </div>
+                            <table style="height: 80px;width: 1000px;">
+                                <th>
+                                    <th style="padding: 4px;vertical-align: top;border: 1px solid #DDDDDD;">
+                                        vulnerability Findings
+                                    <th style=" text-align:center; padding: 4px;vertical-align: top;border: 1px solid #DDDDDD;">
+                                        Description
+                                    </th>
+                                <tr>
+                                    <td style="padding: 4px;vertical-align: top;border: 1px solid #DDDDDD;">
+                                        {{Engagement_Name}}
+                                    </td>
+                                    <td style="padding: 4px;vertical-align: top;border: 1px solid #DDDDDD;">
+                                        {{TABLE_OF_CONTENTS}}
+                                    </td>
+                                    <tdstyle="padding: 4px;vertical-align: top;border: 1px solid #DDDDDD;">
+                                        {{Executive_Summary}}
+                                    </td>
+                                    <td style="padding: 4px;vertical-align: top;border: 1px solid #DDDDDD;">
+                                        {{Lead_First-Name_Last-Name}}
+                                    </td>
+                                    <td style="padding: 4px;vertical-align: top;border: 1px solid #DDDDDD;">
+                                        {{Endpoints – This can be a bulleted list}}
+                                    </td>
+                                    <td style="padding: 4px;vertical-align: top;border: 1px solid #DDDDDD;">
+                                        {{Ref}}
+                                    </td>
+                                    <td style="padding: 4px;vertical-align: top;border: 1px solid #DDDDDD;">
+                                        {{Start_Date}}
+                                    </td>
+                                    <td  style="padding: 4px;vertical-align: top;border: 1px solid #DDDDDD;">
+                                        {{End_Date}}
+                                    </td>
+                                    <td  style="padding: 4px;vertical-align: top;border: 1px solid #DDDDDD;">
+                                        {{Scope}}
+                                    </td>
+                                    <td  style="padding: 4px;vertical-align: top;border: 1px solid #DDDDDD;">
+                                        {{Year}}
+                                    </td>
+                                <tr>
+                                    <td  style=" text-align:center; padding: 4px;vertical-align: top;border: 1px solid #DDDDDD;">
+                                        Client name
+                                    </td>
+                                    <td style=" text-align:center; padding: 4px;vertical-align: top;border: 1px solid #DDDDDD;">
+                                        Table of Contents
+                                    </td>
+                                    <td style=" text-align:center; padding: 4px;vertical-align: top;border: 1px solid #DDDDDD;">
+                                        Executive summary insert
+                                    </td>
+
+                                    <td style=" text-align:center; padding: 4px;vertical-align: top;border: 1px solid #DDDDDD;">
+                                        Author of report
+                                    </td>
+                                    <td style=" text-align:center; padding: 4px;vertical-align: top;border: 1px solid #DDDDDD;">
+                                        This is this list of IP Addresses / Hostnames 
+                                    </td>
+                                    <td style=" text-align:center; padding: 4px;vertical-align: top;border: 1px solid #DDDDDD;">
+                                        First letter of each word in Engagement_Name
+                                    </td>
+
+                                    <td style=" text-align:center; padding: 4px;vertical-align: top;border: 1px solid #DDDDDD;">
+                                        Start day of testing (day month)
+                                    </td>
+                                    <td style=" text-align:center; padding: 4px;vertical-align: top;border: 1px solid #DDDDDD;">
+                                        End day of testing (day month year)
+                                    </td>
+                                    <td style=" text-align:center; padding: 4px;vertical-align: top;border: 1px solid #DDDDDD;">
+                                        Scope of test in Nessus format
+                                    </td>
+                                    <td style=" text-align:center; padding: 4px;vertical-align: top;border: 1px solid #DDDDDD;">
+                                        Year of test
+                                    </td>
+                                </td>
+                            </tr>
+                        </th>
+    <div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 id="product">penetration test Security Report for {{ engagement.product.name }}</h3>
+            <p>
+                <strong>Engagement:</strong> {{ engagement.name }}
+                <br><strong>Generated:</strong> {% display_date %}
+            </p>
+        </div>
+    </div>
+    {% if include_table_of_contents%}
+    <div class="row">
+        <div class="col-lg-12" id="toc">
+            <h3 id="table_of_contents">Table of Contents for {{ penetration_test_report }}</h3>
+        </div>
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading finding-title">
+                        <div class="clearfix">
+                            <h5>
+                                executive Summary
+                                {% if engagement.name %}
+                                : {{ engagement.name, project name Lead_First-Name_Last-Name }}
+                                {% endif %}
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table id="notes" class="table-striped table table-condensed table-hover centered">
+                            <tr>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Status</th>
+                                <th>Lead</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    {{ engagement.target_start }}
+                                </td>
+                                <td>
+                                    {{ engagement.target_end }}
+                                </td>
+                                <td>
+                                    {{ engagement.status }}
+                                </td>
+                                <td>
+                                    {{ engagement.lead.first_name }} {{ engagement.lead.last_name }}
+                                    - {{ engagement.lead }}
+                                </td>
+                            </tr>
+                            {% if general finding-title %}
+                            <tr>
+                                <td colspan="4">
+                                    {{ engagement.description|markdown_render }}
+                                </td>
+                            </tr>
+                            {% endif %}
+                        </table>
+                    </div>
+                </div>
+
+                {% if engagement.test_set %}
+                <p>The engagement included the following tests:</p>
+                <ul>
+                    {% for t in engagement.test_set.all %}
+                    <li>{{ t.test_type.name }}
+                        ({{ t.environment.name|default:"unknown" }}): {{ t.target_start|date:"SHORT_DATE_FORMAT" }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                {% if engagement.test_strategy %}
+                <p>
+                    The test strategy for this engagement can be viewed at
+                    <a href="{{ https://support.microsoft.com/en-us/lifecycle }}">{{ engagement.test_strategy }}</a>
+                </p>
+                {% endif %}
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading finding-title">
+                                <div class="clearfix">
+                                    <h5>
+                                        Endpoints
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="panel panel-info endpoints table-responsive">
+                                {% colgroup endpoints into 2 cols as grouped_items %}
+                                <table class="table-striped table table table-condensed table-hover finding-endpoints">
+                                    {% for row in grouped_items %}
+                                    <table style="width: 30px; letter-spacing: 1px;">
+                                    <td style="text-align: start;">
+                                        Tester
+                                        Michael Aguilera
+                                    <td style="text-align:center ;">
+                                        Qualification
+                                        OSCP HCT
+                                    </tr>
+                                        {% for item in row %}
+                                        <td>{% if item %}<i class="fa fa-circle"></i>
+                                            {{ item }}{% endif %}
+                                        </td>
+                                        {% endfor %}
+                                    </tr>
+                                    {% endfor %}
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p>
+                    A total of {{ findings|length|apnumber }} finding{{ findings|length|pluralize }} of varying
+                    severity are represented in this report.
+                </p>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h5>
+                            Engagement Finding Count
+                        </h5>
+                    </div>
+                    <div class="panel-body">
+                        <div id="open_findings" class="graph"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h5>
+                            Finding Age
+                        </h5>
+                    </div>
+                    <div class="panel-body">
+                        <div id="finding_age" class="graph"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        <div class="row">
+            <div class="col-lg-12">
+                {% if include_finding_notes %}
+                {% if engagement.test_set.all %}
+                <h3>Testing Notes</h3>
+                <p>
+                    {% for test in engagement.test_set.all %}
+                    {% if test in tests %}
+                    {% if test.notes.all %}
+                    {% for note in test.notes.all %}
+                    {% if not note.private %}
+                    {{ note.author }} - {{ note.date }} - {{ note }} <br>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                    {% endif %}
+                    {% endfor %}
+                </p>
+                {% endif %}
+                {% endif %}
+                {% if engagement.risk_acceptance.count > 0 %}
+                <h3 id="risk_acceptance">Accepted Findings</h3>
+                <table style="height: 80px;width: 1000px;">
+                    <tr>
+                        <th style="text-align: start;padding: 2px;vertical-align: top;border: 2px solid #DDDDDD;">
+                            Issue
+                        </th>
+                        <th style="text-align: center;padding: 2px;vertical-align: top;border: 2px solid #DDDDDD;">
+                            CVSS
+                        </th>
+                        <th style="text-align: left: ;: right;padding: 2px;vertical-align: top;border: 2px solid #DDDDDD;">
+                            Eploitable
+                        </th>
+                        <th style="text-align: end;padding: 2px;vertical-align: top;border: 2px solid #DDDDDD;">
+                            Risk
+                        </th>
+                        
+                    </tr>
+                    {% for risk in engagement.risk_acceptance.all %}
+                    {% for finding in risk.accepted_findings.all %}
+                    <tr>
+                        <td style=" text-align:start; padding: 1.5px;vertical-align: top;border: 2px solid #DDDDDD;">
+                            {{ finding_title }}
+                            {{ finding_title }}
+                            {{ finding_title }}
+                            {{ finding_title }}
+                    </td>
+                        <td style=" text-align:center; padding: 1.5px;vertical-align: top;border: 2px solid #DDDDDD;">
+                            {{CVSS_Base_Score}}
+                            {{CVSS_Base_Score}}
+                            {{CVSS_Base_Score}}
+                            {{CVSS_Base_Score}}
+                    </td>
+                        <td style=" text-align:right; padding: 1.5px;vertical-align: top;border: 2px solid #DDDDDD;">
+                    </td>
+                        <td style=" text-align:end; padding: 1.5px;vertical-align: top;border: 2px solid #DDDDDD;">
+                            Critical
+                            High
+                            Medium
+                            Low
+                        </td>
+                        <td style="text-align: start; padding: 1.5px;vertical-align: top;border: 2px solid #DDDDDD;">
+                            Security Ratings
+                            C C+ B B+ A A+</td>
+                        <td style=" text-align:center; padding: 1.5px;vertical-align: top;border: 2px solid #DDDDDD;">
+                            Risk level</td>
+                        <td style=" text-align:end; padding: 1.5px;vertical-align: top;border: 2px solid #DDDDDD;">
+                            Low Medium High Critical</td>
+               
+                </td>
+                    </tr>
+                    {% endfor %}
+                    {% endfor %}
+                </table>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                {% if findings %}
+                <h3 id="findings">Findings</h3>
+                {% endif %}
+                {% for finding in findings %}
+                {% ifchanged finding.severity %}
+                <h4>{{ finding.severity|capfirst }}</h4>
+                {% endifchanged %}
+                <div class="panel panel-default">
+                    <div class="panel-heading finding-title">
+                        <div class="clearfix">
+                            <h5>
+                                Finding {{ forloop.counter }}: {{ finding.title }}
+                                {% if finding.tags %}
+                                <sup>
+                                    {% for tag in finding.tags %}
+                                    {{ tag }}
+                                    {% endfor %}
+                                </sup>
+                                {% endif %}
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table id="notes" class="table-striped table table-condensed table-hover centered">
+                            <tr>
+                                <th>Severity</th>
+                                <th>Status</th>
+                                {% if finding.risk_acceptance_set.all %}
+                                <th>Acceptance</th>
+                                {% endif %}
+                                <th>Date discovered</th>
+                                <th>Age</th>
+                                <th>Reporter</th>
+                                {% if finding.mitigated %}
+                                <th>Date Mitigated</th>
+                                <th>Mitigated By</th>
+                                {% endif %}
+                                {% if finding.cwe > 0 %}
+                                <th>CWE</th>
+                                {% endif %}
+                                <th>Dojo ID</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="label severity severity-{{ finding.severity }}">
+                                        {% if finding.severity %}
+                                        {{ finding.severity }}
+                                        {% else %}
+                                        Unknown
+                                        {% endif %}
+                                    </span>
+                                </td>
+                                <td>{{ finding.status }}</td>
+                                {% if finding.risk_acceptance_set.all %}
+                                <td>
+                                    <a
+                                        href="{% url 'view_risk' finding.test.engagement.id finding.risk_acceptance_set.all.0.id %}">
+                                        View Risk Acceptance</a>
+                                </td>
+                                {% endif %}
+                                <td>{{ finding.date }}</td>
+                                <td>{{ finding.age }} days</td>
+                                <td>{{ finding.reporter }}</td>
+                                {% if finding.mitigated %}
+                                <td>{{ finding.mitigated }}</td>
+                                <td>{{ finding.mitigated_by }}</td>
+                                {% endif %}
+                                {% if finding.cwe > 0 %}
+                                <td>
+                                    <a target="_blank"
+                                        href="https://cwe.mitre.org/data/definitions/{{ finding.cwe }}.html">
+                                        <i class="fa fa-external-link"></i> {{ finding.cwe }}
+                                    </a>
+                                </td>
+                                {% endif %}
+                                <td>{{ finding.id }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                {% with endpoints=finding.endpoints.all|get_vulnerable_endpoints %}
+                {% if endpoints %}
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-info endpoints table-responsive">
+                            <div class="panel-heading">
+                                {% if finding.file_path %}
+                                <h6> Location </h6>
+                                {%  else %}
+                                <h6>Vulnerable Endpoints / Systems</h6>
+                                {% endif %}
+                            </div>
+
+                            {% if endpoints %}
+                            {% colgroup endpoints into 2 cols as grouped_items %}
+                            <table class="table-striped table table table-condensed table-hover finding-endpoints">
+                                {% for row in grouped_items %}
+                                <tr>
+                                    {% for item in row %}
+                                    <td>{% if item %}<i class="fa fa-circle"></i>
+                                        {{ item }}{% endif %}
+                                    </td>
+                                    {% endfor %}
+                                </tr>
+                                {% endfor %}
+                            </table>
+                            {% Survivability %}
+                            <table class="table-striped table table table-condensed table-hover finding-endpoints">
+                                <tr>
+                                    <th
+                                        style="text-align: center;padding: 4px;vertical-align: top;border: 1px solid #DDDDDD;">
+                                       Mean time to compromise
+                                    </th>
+                                    <th
+                                        style="text-align: center;padding: 4px;vertical-align: top;border: 1px solid #DDDDDD;">
+                                        Mean time to priviledge Escalation
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 4px;vertical-align: top;border: 1px solid #DDDDDD;">
+                                        {{ compromise}}</td>
+                                    <td
+                                        style=" text-align:center; padding: 4px;vertical-align: top;border: 1px solid #DDDDDD;">
+                                        {{ Escalation }}</td>
+                                </tr>
+                            </table>
+                            {% else %}
+                            <div id="vuln_endpoints" class="panel-body endpoint-panel table-responsive">
+                                No endpoints.
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endwith %}
+                        </table>
+                        {% your testing team %}
+                        <table class="table-striped table table table-condensed Data and Information Security finding-endpoints">
+                            <tr>
+                                <th style="text-align: center;padding: 4px;vertical-align: top;border: 1px solid #DDDDDD;">
+                                    Role
+                                </th>
+                                <th style="text-align: center;padding: 4px;vertical-align: top;border: 1px solid #DDDDDD;">
+                                    Name
+                                </th>
+                                <th style="text-align: center;padding: 4px;vertical-align: top;border: 1px solid #DDDDDD;">
+                                    Qualification
+                                </th>
+                                </tr>
+                                <tr>
+                                <td style="padding: 4px;vertical-align: top;border: 1px solid #DDDDDD;">
+                                    penetration team leader</td>
+                                <td style=" text-align:center; padding: 4px;vertical-align: top;border: 1px solid #DDDDDD;">
+                                    peter basil</td>
+                                <td style=" text-align:center; padding: 4px;vertical-align: top;border: 1px solid #DDDDDD;">
+                                    F.BCS, C.Eng, CISSP, OSCP, CRT, HCPT</td>
+                                </tr>
+                                <tr>
+                                <td style="padding: 4px;vertical-align: top;border: 1px solid #DDDDDD;">
+                                    penetration tester</td>
+                                <td style=" text-align:center; padding: 4px;vertical-align: top;border: 1px solid #DDDDDD;">
+                                    {{Lead_First-Name_Last-Name}} OSCP, HCT</td>
+                                <td style=" text-align:center; padding: 4px;vertical-align: top;border: 1px solid #DDDDDD;">
+                                    OSCP, HCT</td>
+                             </tr>
+
+                        </table>
+                {% with endpoints=finding.endpoints.all|get_remediated_endpoints %}
+                {% if endpoints %}
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-info endpoints table-responsive">
+                            <div class="panel-heading">
+                                {% if finding.file_path %}
+                                <h6> Location </h6>
+                                {%  else %}
+                                <h6>Remediated Endpoints / Systems</h6>
+                                {% endif %}
+                            </div>
+
+                            {% if endpoints %}
+                            {% colgroup endpoints into 2 cols as grouped_items %}
+                            <table class="table-striped table table table-condensed table-hover finding-endpoints">
+                                {% for row in grouped_items %}
+                                <tr>
+                                    {% for item in row %}
+                                    <td>{% if item %}<i class="fa fa-circle"></i>
+                                        {{ item }}{% endif %}
+                                    </td>
+                                    {% endfor %}
+                                </tr>
+                                {% endfor %}
+                            </table>
+                            {% port_enumeration %}
+                            <table class="table-striped table table table-condensed table-hover finding-endpoints">
+                                <tr>
+                                    
+                                    <th style="text-align: center;padding: 4px;vertical-align: top;border: 1px solid #DDDDDD;">
+                                        IP Address
+                                    </th>
+                                    
+                                    <th style="text-align: center;padding: 4px;vertical-align: top;border: 1px solid #DDDDDD;">
+                                        TCP Port
+                                    </th>
+                                    <th style="text-align: center;padding: 4px;vertical-align: top;border: 1px solid #DDDDDD;">
+                                        TCP Service
+                                    </th>
+                                    <th style="text-align: center;padding: 4px;vertical-align: top;border: 1px solid #DDDDDD;">
+                                        UDP Port
+                                    </th>
+                                    <th style="text-align: center;padding: 4px;vertical-align: top;border: 1px solid #DDDDDD;">
+                                        UDP Service
+                                    </th>
+                                </tr>
+                            
+                            </table>
+                            {% else %}
+                            <div id="vuln_endpoints" class="panel-body endpoint-panel table-responsive">
+                                No endpoints.
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endwith %}
+
+                <h6>Description</h6>
+                <pre>{{ finding.description|markdown_render }}</pre>
+
+                <h6>Mitigation</h6>
+                <pre>{{ finding.mitigation|markdown_render }}</pre>
+                {% if finding.get_report_requests %}
+                <h5>Sample Request(s): Displaying {{finding.get_report_requests.count}} of
+                    {{finding.burprawrequestresponse_set.count}}</h5>
+                {% for req in finding.get_report_requests %}
+                <h6>Request {{forloop.counter}} </h6>
+                <pre>{{ req.get_request }}</pre>
+                {% if req.get_response %}
+                <h6>Response {{forloop.counter}}</h6>
+                <pre>{{ req.get_response|truncatechars:800 }}</pre>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+
+                <h6>Impact</h6>
+                <pre>{{ finding.impact|markdown_render }}</pre>
+                {% if finding.steps_to_reproduce %}
+                <h6>Steps to Reproduce</h6>
+                <pre>{{ finding.steps_to_reproduce|markdown_render }}</pre>
+                {% endif %}
+                {% if finding.severity_justification %}
+                <h6>Severity Justification</h6>
+                <pre>{{ finding.severity_justification|markdown_render }}</pre>
+                {% endif %}
+                <h6>References</h6>
+                <pre>{{ finding.references|markdown_render }}</pre>
+                {% if include_finding_images %}
+                <h6>Images</h6>
+                {% if finding.images.all.count > 0 %}
+                {% for pic in finding.images.all %}
+                <p><img src="{{ host }}{% pic_token pic 'original' %}" style="max-width: 85%"></p>
+                {% endfor %}
+                {% else %}
+                <p class="text-center">No images found.</p>
+                {% endif %}
+                {% endif %}
+                {% if include_finding_notes %}
+                {% with notes=finding.notes.all|get_public_notes %}
+                {% if notes.count > 0 %}
+                <h6>Notes</h6>
+                <table id="notes" class="tablesorter-bootstrap table table-condensed table-striped">
+                    <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>Date</th>
+                            {% with notes_with_type=notes|get_notetype_notes_count %}
+                            {% if notes_with_type > 0 %}
+                            <th>Note Type</th>
+                            {% endif %}
+                            <th>Note</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for note in notes reversed %}
+                        <tr>
+                            <td>
+                                {{ note.author.username }}
+                            </td>
+                            <td>
+                                {{ note.date }}
+                            </td>
+                            {% if notes_with_type > 0 %}
+                            <td>
+                                {% if note.note_type != None %}
+                                {{ note.note_type }}
+                                {% endif %}
+                            </td>
+                            {% endif %}
+                            <td>
+                                {{ note|linebreaks }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    {% endwith %}
+                </table>
+                {% endif %}
+                {% endwith %}
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        {% if include_table_of_contents %}
+    </div>
+    {% endif %}
+</div> <!-- /container -->
+{% endblock %}
+{% block js %}
+<script src="{{ host }}{% static "jquery></script>
+<!-- Flot Charts JavaScript -->
+    $(function () {
+
+
+        finding_age();
+        open_findings();
+        {% if endpoint_opened_per_month %}
+        opened_per_month();
+        {% endif %}
+
+
+    });
+
+    function finding_age() {
+        var data = {};
+        var data_1 = []
+        var ticks = []
+        {% for f in findings %}
+        if (data[{{ f.age }
+    }]) {
+        data[{{ f.age }
+    }] += 1
+                }
+                else {
+        data[{{ f.age }
+    }] = 1
+                }
+    {% endfor %}
+    var i = 0;
+    $.each(data, function (index, value) {
+        if (value > 0) {
+            data_1.push([i, value]);
+            ticks.push([i, index])
+        }
+        i++;
+    });
+
+
+    var dataset = [
+        { data: data_1, color: "#337ab7", fillColor: "#337ab7" }
+    ];
+
+    var options = {
+        series: {
+            bars: {
+                show: true,
+                fill: true,
+                fillColor: "#337ab7"
+            }
+        },
+        bars: {
+            align: "center",
+            barWidth: 0.5
+        },
+        xaxis: {
+            axisLabel: "Days Open",
+            axisLabelUseCanvas: true,
+            axisLabelFontSizePixels: 12,
+            axisLabelFontFamily: 'Verdana, Arial',
+            axisLabelPadding: 10,
+            ticks: ticks,
+        },
+        yaxis: {
+            axisLabel: "Number of Findings",
+            axisLabelUseCanvas: true,
+            axisLabelFontSizePixels: 12,
+            axisLabelFontFamily: 'Verdana, Arial',
+            axisLabelPadding: 3,
+        },
+        legend: {
+            show: false,
+        },
+        grid: {
+            borderWidth: 1,
+            borderColor: '#e7e7e7',
+        }
+    };
+
+
+    $.plot("#finding_age", dataset, options);
+        }
+    ;
+    function open_findings() {
+        var critical = 0;
+        var high = 0;
+        var medium = 0;
+        var low = 0;
+        var info = 0;
+        var ticks = [
+            [0, "Critical"], [1, "High"], [2, "Medium"], [3, "Low"], [4, "Info"]
+        ];
+
+        {% for f in findings %}
+        {% if f.severity == 'Critical' %}
+        critical += 1;
+        {% elif f.severity == 'High' %}
+        high += 1;
+        {% elif f.severity == 'Medium' %}
+        medium += 1;
+        {% elif f.severity == 'Low' %}
+        low += 1;
+        {% elif f.severity == 'Info' %}
+        info += 1;
+        {% endif %}
+        {% endfor %}
+
+        var d1 = [
+            [0, critical],
+        ];
+        var d2 = [
+            [1, high],
+        ];
+        var d3 = [
+            [2, medium],
+        ];
+        var d4 = [
+            [3, low],
+        ];
+        var d5 = [
+            [4, info],
+        ];
+
+        var data = [
+            {
+                label: "Critical",
+                data: d1,
+                bars: {
+                    show: true,
+                    fill: true,
+                    lineWidth: 1,
+                    order: 1,
+                    fillColor: "#d9534f"
+                },
+                color: "#d9534f"
+            },
+            {
+                label: "High",
+                data: d2,
+                bars: {
+                    show: true,
+                    fill: true,
+                    lineWidth: 1,
+                    order: 2,
+                    fillColor: "#f0ad4e"
+                },
+                color: "#f0ad4e"
+            },
+            {
+                label: "Medium",
+                data: d3,
+                bars: {
+                    show: true,
+                    fill: true,
+                    lineWidth: 1,
+                    order: 3,
+                    fillColor: "#f0de28"
+                },
+                color: "#f0de28"
+            },
+            {
+                label: "Low",
+                data: d4,
+                bars: {
+                    show: true,
+                    fill: true,
+                    lineWidth: 1,
+                    order: 4,
+                    fillColor: "#337ab7"
+                },
+                color: "#337ab7"
+            },
+            {
+                label: "info",
+                data: d5,
+                bars: {
+                    show: true,
+                    fill: true,
+                    lineWidth: 1,
+                    order: 4,
+                    fillColor: "#80699B"
+                },
+                color: "#80699B"
+            }
+        ];
+
+        $.plot("#open_findings", data, {
+            series: {
+                stack: true,
+                bars: {
+                    show: true,
+                    barWidth: .9,
+                    'align': "center",
+                },
+
+            },
+            grid: {
+                hoverable: false,
+                borderWidth: 1,
+                borderColor: '#e7e7e7',
+
+            },
+            tooltip: false,
+            legend: {
+                show: false,
+                position: "ne"
+            },
+            xaxis: {
+                ticks: ticks,
+            },
+
+        });
+    }
+    ;
+    {% if endpoint_opened_per_month %}
+    function opened_per_month() {
+        var critical = [],
+            high = [],
+            medium = [],
+            low = [];
+
+        {% for month in endpoint_opened_per_month | slice: '1:' %}
+        critical.push([{{ month.0 }}, { { month.2 } }]);
+    high.push([{{ month.0 }}, {{ month.3 }}]);
+    medium.push([{{ month.0 }}, {{ month.4 }}]);
+    low.push([{{ month.0 }}, {{ month.5 }}]);
+    {% endfor %}
+
+    var tick_count = critical.length 7 ? critical.length : 7;
+    var options = {
+        xaxis: {
+            mode: "time",
+            timeformat: "%m-%d-%Y",
+            timezone: 'browser'
+        },
+        xaxes: [{
+            ticks: tick_count
+        }],
+        yaxes: [{
+            min: 0
+        }],
+        series: {
+            stack: true,
+            lines: {
+                show: true
+            },
+            points: {
+                show: true
+            }
+        },
+        grid: {
+            hoverable: true,
+            borderWidth: 1,
+            borderColor: '#e7e7e7'
+
+        },
+        tooltip: true
+    };
+    var plotObj = $.plot($("#opened_per_month"), [{
+        data: critical,
+        label: " Critical",
+        color: "#d9534f",
+
+    }, {
+        data: high,
+        label: " High",
+        color: '#f0ad4e',
+
+    }, {
+        data: medium,
+        label: " Medium",
+        color: '#f0de28',
+
+    }, {
+        data: low,
+        label: " Low",
+        color: '#337ab7',
+
+    }],
+        options);
+            }
+    {% endif %}
+
+    window.onload = function () {
+        var toc = "";
+        var level = 3;
+
+        document.getElementById("contents").innerHTML =
+            document.getElementById("contents").innerHTML.replace(
+                /<h([\d])([^<]*)>([^]+);\/h([\d])>|<h([\d])([^>]*)>([^]+)<sup>([^]*);\/sup>([^]*);\/h([\d])>/gi,
+                function (str, openLevel, id, titleText, closeLevel, openLevel_t, id_t, titleText_t, tags, junk, closeLevel_t) {
+                    if (openLevel != closeLevel || openLevel > 5) {
+                        return str;
+                    }
+
+                    if (tags) {
+                        openLevel = openLevel_t;
+                        id = id_t;
+                        titleText = titleText_t;
+                        closeLevel = closeLevel_t;
+                    }
+
+                    if (openLevel > level) {
+                        toc += (new Array(openLevel - level + 1)).join("<ul>");
+                    } else if (open Level_level) {
+                        toc += (new Array(level - openLevel + 1)).join("</ul>");
+                    }
+
+                    level = parseInt(openLevel);
+
+                    var anchor = titleText.trim().replace(/ /g, "_");
+
+                    if (tags) 
+                {
+                    if (['Info', 'Low', 'Medium', 'High', 'Critical'].indexOf(titleText) >= 0) {
+                    toc += "<li><a style="\"font-size:" + (160 - (level * 7)) + "%; color:black;\" href=\"#" + anchor + "\">" +
+                            "<span class="\"label severity severity-" + titleText + "\">" + titleText + "</span></a></li>";"
+                    }
+                    else {
+                    toc += "<li><a style="\"font-size:" + (160 - (level * 7)) + "%; color:black;\" href=\"#" + anchor + "\">" +
+                            titleText + "<sup>" + tags + "</sup></a></li>";"
+                    }
+                    
+                    return "<a style="\"color:black;\" name=\"" + anchor + "\">
+                        <h" + openLevel + "" + id + ">" + titleText + "<sup>" + tags + "</sup></h" + closeLevel + "></a>" ; } else { if
+                            (['Info', 'Low' , 'Medium' , 'High' , 'Critical' ].indexOf(titleText)>= 0) {
+                            toc += "<br>
+                            <li><a style="\"font-size:" + (160 - (level * 7)) + "%; color:black;\" href=\"#" + anchor + "\">" +
+                                    "<span class=\"label severity severity-" + titleText + "\">" + titleText + "</span></a></li><br>";"
+                            }
+                            else {
+                            toc += "<li><a style="\"font-size:" + (160 - (level * 7)) + "%; color:black;\" href=\"#" + anchor + "\">" +
+                                    titleText + "</a></li>";"
+                            }
+                    
+                            return "<a style="\"color:black;\" name=\"" + anchor + "\">
+                                <h" + openLevel + "" + id + ">" + titleText + "</h" + closeLevel + "></a>" ; } return "<a style=\"
+                                    color:black;\" name=\"" + anchor + "\">
+                                    <h" + openLevel + "" + id + ">" + titleText + "<sup>" + tags + "</sup></h" + closeLevel + "></a>" ;"
+                    }
+
+                    return "<a style="font-size: medium;" name=\ + anchor + ><h" + openLevel +  + id + >"
+                        + titleText + "<sup>" + tags + "</sup></h" + closeLevel + ></a>";
+                }
+            );
+
+        if (level) {
+            toc += (new Array(level + 1)).join("</ul>");
+        }
+
+        document.getElementById("toc").innerHTML += toc;
+    };
+</script>
+{% endblock %}
